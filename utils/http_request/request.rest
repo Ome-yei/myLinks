@@ -1,0 +1,32 @@
+GET http://localhost:3001/api/usefulLinks
+
+### Good get request
+GET http://localhost:3001/api/usefulLinks/6168ab66b423eb620041c7fb
+
+### Bad get request
+GET http://localhost:3001/api/usefulLinks/61689fe11b3299803a3a1606
+
+###
+POST http://localhost:3001/api/usefulLinks
+content-type: application/json
+
+{
+    "title": "Javascript Info",
+    "url": "https://javascript.info/",
+    "note": "Has the basics to advanced topics with simple, but detailed explanations",
+    "importance": 0
+}
+
+### Add a new id to test delete
+DELETE http://localhost:3001/api/usefulLinks/
+
+###
+PUT http://localhost:3001/api/usefulLinks/6168ab66b423eb620041c7fb
+content-type: application/json
+
+{
+    "title": "Javascript Info",
+    "url": "https://javascript.info/",
+    "note": "Has basics to advanced topics with simple, but detailed explanations.",
+    "importance": 0
+}
