@@ -11,17 +11,17 @@ POST http://localhost:3001/api/usefulLinks
 content-type: application/json
 
 {
-    "title": "Javascript Info",
-    "url": "https://javascript.info/",
-    "note": "Has the basics to advanced topics with simple, but detailed explanations",
-    "importance": 0
+    "title": "Lokesh Dhakar",
+    "url": "https://lokeshdhakar.com/",
+    "note": "A personal portfolio with a style I would like to replicate.",
+    "importance": 1
 }
 
 ### Add a new id to test delete
-DELETE http://localhost:3001/api/usefulLinks/
+DELETE http://localhost:3001/api/usefulLinks/6168ab66b423eb620041c7fb
 
 ###
-PUT http://localhost:3001/api/usefulLinks/6168ab66b423eb620041c7fb
+PUT http://localhost:3001/api/usefulLinks/6168ab0db423eb620041c7f8
 content-type: application/json
 
 {

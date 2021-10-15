@@ -44,7 +44,7 @@ usefulLinksRouter.delete('/:id', (req, res, next) => {
   const linkId = req.params.id;
 
   UsefulLink.findByIdAndRemove(linkId)
-    .then((result) => {
+    .then(() => {
       res.status(204).end();
     })
     .catch((error) => next(error));
