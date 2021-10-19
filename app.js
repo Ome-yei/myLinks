@@ -9,6 +9,7 @@ const logger = require('./utils/logger');
 const app = express();
 
 const usefulLinksRouter = require('./controllers/useful_links');
+const categoriesRouter = require('./controllers/categories');
 
 mongoose.connect(config.MONGODB_URI)
   .then(() => {
@@ -24,6 +25,7 @@ app.use(express.json());
 app.use(middleware.requestLogger);
 
 app.use('/api/usefulLinks', usefulLinksRouter);
+app.use('/api/categories', categoriesRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);

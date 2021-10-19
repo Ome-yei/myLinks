@@ -23,14 +23,14 @@ usefulLinksRouter.get('/:id', (req, res, next) => {
 // post one link
 usefulLinksRouter.post('/', (req, res, next) => {
   const {
-    title, url, note, importance,
+    title, url, note, clicks,
   } = req.body;
 
   const link = new UsefulLink({
     title,
     url,
     note,
-    importance,
+    clicks,
   });
 
   link.save().then((savedLink) => {
@@ -53,14 +53,14 @@ usefulLinksRouter.delete('/:id', (req, res, next) => {
 // put one link
 usefulLinksRouter.put('/:id', (req, res, next) => {
   const {
-    title, url, note, importance,
+    title, url, note, clicks,
   } = req.body;
 
   const link = {
     title,
     url,
     note,
-    importance,
+    clicks,
   };
 
   UsefulLink.findByIdAndUpdate(req.params.id, link, { new: true, runValidators: true })
