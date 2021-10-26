@@ -11,10 +11,11 @@ POST http://localhost:3001/api/usefulLinks
 content-type: application/json
 
 {
-    "title": "Lokesh Dhakar",
-    "url": "https://lokeshdhakar.com/",
-    "note": "A personal portfolio with a style I would like to replicate.",
-    "importance": 1
+    "title": "MDN Web Docs",
+    "url": "https://developer.mozilla.org/en-US/",
+    "note": "A combination of resources for web development.",
+    "importance": 0,
+    "categories": ["javascript", "css"]
 }
 
 ### Add a new id to test delete
@@ -29,4 +30,15 @@ content-type: application/json
     "url": "https://javascript.info/",
     "note": "Has basics to advanced topics with simple, but detailed explanations.",
     "importance": 0
+}
+
+###
+GET http://localhost:3001/api/categories
+
+###
+POST http://localhost:3001/api/categories
+content-type: application/json
+
+{
+    "name": "video"
 }

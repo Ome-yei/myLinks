@@ -19,6 +19,7 @@ const usefulLinkSchema = new mongoose.Schema({
     type: Number,
   },
   categories: [String],
+  date: Date,
 });
 
 const categoriesSchema = new mongoose.Schema({

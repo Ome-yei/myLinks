@@ -1,5 +1,5 @@
 const usefulLinksRouter = require('express').Router();
-const UsefulLink = require('../models/useful_links');
+const { UsefulLink } = require('../models/useful_links');
 
 // get all links
 usefulLinksRouter.get('/', (req, res) => {
@@ -23,7 +23,7 @@ usefulLinksRouter.get('/:id', (req, res, next) => {
 // post one link
 usefulLinksRouter.post('/', (req, res, next) => {
   const {
-    title, url, note, clicks,
+    title, url, note, clicks, categories,
   } = req.body;
 
   const link = new UsefulLink({
@@ -31,6 +31,8 @@ usefulLinksRouter.post('/', (req, res, next) => {
     url,
     note,
     clicks,
+    categories,
+    date: new Date(),
   });
 
   link.save().then((savedLink) => {
@@ -53,7 +55,7 @@ usefulLinksRouter.delete('/:id', (req, res, next) => {
 // put one link
 usefulLinksRouter.put('/:id', (req, res, next) => {
   const {
-    title, url, note, clicks,
+    title, url, note, clicks, categories,
   } = req.body;
 
   const link = {
@@ -61,6 +63,8 @@ usefulLinksRouter.put('/:id', (req, res, next) => {
     url,
     note,
     clicks,
+    categories,
+    date: new Date(),
   };
 
   UsefulLink.findByIdAndUpdate(req.params.id, link, { new: true, runValidators: true })
