@@ -11,7 +11,13 @@ usefulLinksRouter.get('/', (req, res) => {
   } else {
     const category = req.query.filterby.replace(/['"]+/g, '');
     UsefulLink.find({ categories: { $all: [category] } }).then((links) => {
-      res.json(links);
+      if (links.length === 0) {
+        UsefulLink.find({}).sort({ clicks: -1 }).then((nLinks) => {
+          res.json(nLinks);
+        });
+      } else {
+        res.json(links);
+      }
     });
   }
 });
