@@ -2,10 +2,18 @@ const usefulLinksRouter = require('express').Router();
 const { UsefulLink } = require('../models/useful_links');
 
 // get all links
+// What if a category is passed but there is none? making the filterby to return an empty array.
 usefulLinksRouter.get('/', (req, res) => {
-  UsefulLink.find({}).then((links) => {
-    res.json(links);
-  });
+  if (req.query.filterby === undefined) {
+    UsefulLink.find({}).sort({ clicks: -1 }).then((links) => {
+      res.json(links);
+    });
+  } else {
+    const category = req.query.filterby.replace(/['"]+/g, '');
+    UsefulLink.find({ categories: { $all: [category] } }).then((links) => {
+      res.json(links);
+    });
+  }
 });
 
 // get one link
@@ -23,14 +31,14 @@ usefulLinksRouter.get('/:id', (req, res, next) => {
 // post one link
 usefulLinksRouter.post('/', (req, res, next) => {
   const {
-    title, url, note, clicks, categories,
+    title, url, note, categories,
   } = req.body;
 
   const link = new UsefulLink({
     title,
     url,
     note,
-    clicks,
+    clicks: 0,
     categories,
     date: new Date(),
   });
@@ -55,14 +63,14 @@ usefulLinksRouter.delete('/:id', (req, res, next) => {
 // put one link
 usefulLinksRouter.put('/:id', (req, res, next) => {
   const {
-    title, url, note, clicks, categories,
+    title, url, note, categories,
   } = req.body;
 
   const link = {
     title,
     url,
     note,
-    clicks,
+    clicks: 0,
     categories,
     date: new Date(),
   };
