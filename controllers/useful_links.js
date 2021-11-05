@@ -37,14 +37,14 @@ usefulLinksRouter.get('/:id', (req, res, next) => {
 // post one link
 usefulLinksRouter.post('/', (req, res, next) => {
   const {
-    title, url, note, categories,
+    title, url, note, clicks, categories,
   } = req.body;
 
   const link = new UsefulLink({
     title,
     url,
     note,
-    clicks: 0,
+    clicks,
     categories,
     date: new Date(),
   });
@@ -69,14 +69,14 @@ usefulLinksRouter.delete('/:id', (req, res, next) => {
 // put one link
 usefulLinksRouter.put('/:id', (req, res, next) => {
   const {
-    title, url, note, categories,
+    title, url, note, clicks, categories,
   } = req.body;
 
   const link = {
     title,
     url,
     note,
-    clicks: 0,
+    clicks,
     categories,
     date: new Date(),
   };
