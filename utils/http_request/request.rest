@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/usefulLinks/?filterby="javascript"
+GET http://localhost:3001/api/usefulLinks/?filterby=""
 
 ### Good get request
 GET http://localhost:3001/api/usefulLinks/6168ab66b423eb620041c7fb

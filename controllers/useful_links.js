@@ -11,7 +11,9 @@ usefulLinksRouter.get('/', (req, res) => {
   } else {
     const category = req.query.filterby.replace(/['"]+/g, '');
     UsefulLink.find({ categories: { $all: [category] } }).then((links) => {
-      if (links.length === 0) {
+      if (links.length === 0 && category !== '--All--') {
+        res.json([]);
+      } else if (category === '--All--') {
         UsefulLink.find({}).sort({ clicks: -1 }).then((nLinks) => {
           res.json(nLinks);
         });
